@@ -1,0 +1,39 @@
+{
+  "name": "DINALEDI Jabulani FM",
+  "short_name": "Dinaledi",
+  "description": "Exclusive access portal for Dinaledi by Jabulani FM.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "categories": ["entertainment", "music"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Login",
+      "url": "/",
+      "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]
+    }
+  ]
+}

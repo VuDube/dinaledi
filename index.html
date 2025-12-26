@@ -2,171 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DINALEDI | Jabulani FM</title>
-    <meta name="description" content="Install the Dinaledi App - Jabulani FM">
     
-    <!-- Google Fonts: Montserrat for the geometric, bold logo style -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dinaledi">
+    <meta name="theme-color" content="#FFD700">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS (via CDN for single-file portability) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Custom Config for Brand Colors -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        brand: {
-                            black: '#000000',
-                            yellow: '#FFD700', /* Captivating Gold/Yellow */
-                            white: '#FFFFFF',
-                        }
-                    },
-                    fontFamily: {
-                        logo: ['Montserrat', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        glow: {
-                            '0%': { boxShadow: '0 0 5px #FFD700, 0 0 10px #FFD700' },
-                            '100%': { boxShadow: '0 0 20px #FFD700, 0 0 30px #FFD700' },
-                        }
-                    }
+                    colors: { brand: { black: '#000000', yellow: '#FFD700', white: '#FFFFFF' } },
+                    fontFamily: { logo: ['Montserrat', 'sans-serif'], body: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
 
     <style>
-        /* Custom Styles for nuances not covered by Tailwind utilities */
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            overflow: hidden; /* Prevent scroll on the landing view */
-        }
-
-        /* The Ripple Animation */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: ripple-anim 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple-anim {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* Star/A styling correction to ensure it looks like the brand */
-        .brand-a {
-            display: inline-block;
-            color: #FFD700;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        /* Button hover sheen effect */
-        .btn-sheen {
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-sheen::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
-        .btn-sheen:hover::after {
-            left: 100%;
-            transition: 0.5s;
-        }
+        body { background-color: #000; color: #fff; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .brand-a { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+        input[type="number"]::-webkit-inner-spin-button, 
+        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .error-shake { animation: shake 0.4s focus; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col items-center justify-center relative bg-brand-black">
 
-    <!-- Background texture or subtle gradient (Optional, to add depth like a high-end app) -->
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-black to-black opacity-80 z-0"></div>
 
-    <!-- Main Content Container -->
-    <div class="z-10 flex flex-col items-center text-center space-y-12 animate-fade-in-up">
-        
-        <!-- Logo Section -->
-        <!-- Using Montserrat 900 (Black) to replicate the thick, geometric logo -->
+    <div class="z-10 flex flex-col items-center text-center space-y-12 w-full px-6">
         <h1 class="font-logo font-black text-5xl md:text-7xl lg:text-9xl tracking-widest select-none">
             DIN<span class="brand-a">A</span>LEDI
         </h1>
 
-        <!-- Subtitle / Context (Optional, keeping it clean as per image) -->
-        
-        <!-- CTA Button -->
-        <div class="relative group">
-            <!-- Glow effect behind button -->
-            <div class="absolute -inset-1 bg-brand-yellow rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-            
-            <a href="https://dinaledi.jabulanifm.com" 
-               id="installBtn"
-               class="btn-sheen relative flex items-center justify-center px-10 py-4 bg-brand-yellow text-black font-logo font-bold text-xl uppercase tracking-wider rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-yellow-300 active:scale-95"
-               onclick="createRipple(event)">
-                Install App
-            </a>
+        <div class="w-full max-w-xs space-y-4">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-brand-yellow rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                <div class="relative bg-black border-2 border-brand-yellow/30 rounded-2xl p-6 space-y-4">
+                    <p class="text-brand-yellow text-sm font-bold tracking-widest uppercase">Enter Access Pin</p>
+                    <input type="number" id="pinInput" maxlength="4" placeholder="••••" 
+                           class="w-full bg-transparent text-center text-4xl tracking-[1rem] font-black text-brand-yellow focus:outline-none placeholder-yellow-900/50"
+                           oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4)">
+                    <button onclick="handleLogin()" 
+                            class="w-full py-4 bg-brand-yellow text-black font-logo font-bold uppercase tracking-widest rounded-xl hover:scale-[1.02] active:scale-95 transition-all">
+                        Login
+                    </button>
+                </div>
+            </div>
+            <p id="errorMsg" class="text-red-500 text-xs font-bold opacity-0 transition-opacity">INVALID PIN - TRY AGAIN</p>
         </div>
     </div>
 
-    <!-- Footer / Legal (Minimal) -->
-    <footer class="absolute bottom-6 text-gray-600 text-xs font-body z-10">
-        &copy; Jabulani FM
-    </footer>
+    <div id="iosModal" class="fixed inset-0 z-50 flex items-end justify-center px-4 pb-10 bg-black/60 hidden">
+        <div class="bg-zinc-900 border border-zinc-800 w-full max-w-sm rounded-3xl p-6 text-center animate-bounce-in">
+            <p class="text-white text-lg font-bold mb-4">Install Dinaledi App</p>
+            <p class="text-zinc-400 text-sm mb-6">Tap the <span class="text-blue-500">Share</span> icon below and then <span class="text-white font-bold">"Add to Home Screen"</span>.</p>
+            <button onclick="document.getElementById('iosModal').classList.add('hidden')" class="text-brand-yellow font-bold uppercase text-sm">Close</button>
+        </div>
+    </div>
 
-    <!-- Interactive Script -->
+    <script src="/sw-register.js"></script>
     <script>
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const circle = document.createElement("span");
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-
-            // Calculate click position relative to the button
-            const rect = button.getBoundingClientRect();
-            
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - rect.left - radius}px`;
-            circle.style.top = `${event.clientY - rect.top - radius}px`;
-            circle.classList.add("ripple");
-
-            // Remove existing ripples to keep DOM clean
-            const ripple = button.getElementsByClassName("ripple")[0];
-            if (ripple) {
-                ripple.remove();
+        // PIN Logic
+        function handleLogin() {
+            const pin = document.getElementById('pinInput').value;
+            const error = document.getElementById('errorMsg');
+            if (pin === "1235") {
+                window.location.href = "https://dinaledi.jabulanifm.com";
+            } else {
+                error.classList.remove('opacity-0');
+                document.getElementById('pinInput').classList.add('error-shake');
+                setTimeout(() => {
+                    document.getElementById('pinInput').classList.remove('error-shake');
+                }, 400);
             }
-
-            button.appendChild(circle);
-
-            // Optional: Delay navigation slightly to show animation if needed, 
-            // but standard 'href' usually allows enough time for the 'active' CSS state.
-            // If you want a forced delay:
-            // event.preventDefault();
-            // setTimeout(() => { window.location.href = button.href; }, 300);
         }
+
+        // Install Logic
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Show custom install UI for Android
+            showInstallPrompt();
+        });
+
+        function showInstallPrompt() {
+            // Check if user is on iOS
+            const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+
+            if (isIos && !isStandalone) {
+                document.getElementById('iosModal').classList.remove('hidden');
+            } else if (deferredPrompt) {
+                // Trigger Android install immediately
+                deferredPrompt.prompt();
+            }
+        }
+
+        // Auto-show prompt on entry
+        window.onload = () => {
+            setTimeout(showInstallPrompt, 2000);
+        };
     </script>
 </body>
 </html>
-
-I need you to leverage your full AI capabilities and advanced expertise to thoroughly research and deeply analyze all relevant and necessary aspects required for you to deliver all PWA code files for the exact code above. When the 'Install App' button is clicked the PWA app must be installed on on all mobile devices (android and iOS). Ensure that the PWA complies 100% with all Android and iOS PWA requirements for guaranteed successful installation an a mobile app with an actual app icon on the mobile device Homescreen.
-
-Conduct deep and thorough research to ensure fact based answers only
